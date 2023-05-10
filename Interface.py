@@ -37,13 +37,22 @@ class GUI:
         self.message_label.pack()
         self.message.pack()
 
-
     def generate(self):
 
         try:
             self.message_label.config(text='')
             self.url = str(self.entry_url.get())
-            urllib.request.urlopen(self.url).getcode()
+            if not self.url:
+                self.message_label.config(text='Please enter a URL.')
+                if hasattr(self, 'label'):
+                    self.label.destroy()
+            response = urllib.request.urlopen(self.url)
+            if response.getcode() != 200:
+                self.message_label.config(text='This URL does not connect to a website.')
+                if hasattr(self, 'label'):
+                    self.label.destroy()
+            if hasattr(self, 'label'):
+                self.label.destroy()
             self.qr = qrcode.QRCode(version=1,
                                     error_correction=qrcode.constants.ERROR_CORRECT_L,
                                     box_size=10,
@@ -52,19 +61,14 @@ class GUI:
             self.qr.add_data(self.url)
             self.qr.make(fit=True)
             self.img = self.qr.make_image(fill_color='black', back_color='white')
-            name = re.findall(r'\w+', self.url)
-            self.fileName = str(name[2] + '.png')
-            self.img.save(self.fileName)
-
-            self.imageOfQR = ImageTk.PhotoImage(Image.open(self.fileName))
-            self.label = Label(self.output, image=self.imageOfQR)
+            self.photo = ImageTk.PhotoImage(self.img)
+            self.label = Label(self.output, image=self.photo)
+            self.label.image = self.photo
             self.label.pack()
-            os.remove(self.fileName)
+
         except:
             self.message_label.config(text='This URL does not connect to a website.')
             self.label.destroy()
-
-
 
     def save(self):
         try:
@@ -85,7 +89,6 @@ class GUI:
         except:
             self.message_label.config(text='This URL does not connect to a website.')
             self.label.destroy()
-
 
 
     def clear(self):
