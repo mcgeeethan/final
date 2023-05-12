@@ -28,9 +28,9 @@ class GUI:
         self.output.place(anchor='center', relx=0.5, rely=0.5)
 
         self.frame_button = Frame(self.window)  # This creates the frame for the
-        self.generate_button = Button(self.frame_button, text='GENERATE', width=20, command=self.generate) # COMMAND NEEDED
-        self.save_button = Button(self.frame_button, text='SAVE', width=20, command=self.save) # COMMAND NEEDED
-        self.clear_button = Button(self.frame_button, text='CLEAR',width=20, command=self.clear) # COMMAND NEEDED
+        self.generate_button = Button(self.frame_button, text='GENERATE', width=20, command=self.generate)
+        self.save_button = Button(self.frame_button, text='SAVE', width=20, command=self.save)
+        self.clear_button = Button(self.frame_button, text='CLEAR',width=20, command=self.clear)
         self.clear_button.pack(padx=5, side='left')
         self.generate_button.pack(padx=5, side='left')
         self.save_button.pack(padx=5, side='left')
