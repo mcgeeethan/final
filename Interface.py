@@ -10,7 +10,7 @@ import os.path
 
 
 class GUI:
-    def __init__(self, window):
+    def __init__(self, window) -> None:
         '''
         This creates the GUI for the program
         :param window: creates the window
@@ -41,7 +41,7 @@ class GUI:
         self.message_label.pack()
         self.message.pack()
 
-    def generate(self):
+    def generate(self) -> None:
         '''
         This function generates the qr code and displays it to the GUI
         '''
@@ -76,7 +76,7 @@ class GUI:
             self.message_label.config(text='This URL does not connect to a website.') # if the URL does not connect to a website this displays a message
             self.label.destroy() # This destroys the QR code if its displayed
 
-    def save(self):
+    def save(self) -> None:
         '''
         This function saves the .png file of the QR code
         '''
@@ -103,7 +103,7 @@ class GUI:
             self.label.destroy() # This destroys the QR code if its displayed
 
 
-    def clear(self):
+    def clear(self) -> None:
         '''
         This function clears the URL entry and clears the QR code from the GUI
         '''
