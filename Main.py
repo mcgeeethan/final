@@ -1,7 +1,7 @@
 from Interface import *
 
 
-def main():
+def main(): # This runs the Interface file
     window = Tk()
     window.title('QR CODE GENERATOR')
     window.config(bg='White')
